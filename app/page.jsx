@@ -63,13 +63,20 @@ export default function Page() {
       <div className="container mx-auto px-6 py-8 max-w-7xl">
         {/* Hero + Right Sidebar */}
         <div className="mb-8">
-          <div className="flex gap-6">
-            <div className="flex-1">
+          <div className="flex gap-6 h-[450px]">
+            {/* Hero takes 65% */}
+            <div className="w-[65%] h-full">
               <Hero />
             </div>
-            <div className="w-80 space-y-6">
-              <Newsletter />
-              <AdBox />
+
+            {/* Sidebar takes 35% and splits vertically */}
+            <div className="w-[35%] h-full flex flex-col gap-6">
+              <div className="flex-1">
+                <AdBox />
+              </div>
+              <div className="flex-1">
+                <Newsletter />
+              </div>
             </div>
           </div>
         </div>
