@@ -1,14 +1,27 @@
-export default function Trending({ items }) {
+export default function Trending({ items, large = false }) {
   return (
-    <div className="space-y-3">
+    <div className={large ? "space-y-4" : "space-y-3"}>
       {items.map((item, index) => (
-        <div key={index} className="flex items-center space-x-3 bg-gray-900/50 p-3 rounded-lg hover:bg-gray-800/50 transition-colors cursor-pointer group border border-gray-800">
+        <div
+          key={index}
+          className={`flex items-center rounded-lg transition-colors cursor-pointer group border
+            ${large ? "bg-gray-900/60 p-4 hover:bg-gray-800/60 border-gray-800 min-h-[96px]" : "bg-gray-900/50 p-3 hover:bg-gray-800/50 border-gray-800"}
+          `}
+        >
           <img
             src={item.image}
             alt={item.title}
-            className="w-12 h-9 object-cover rounded group-hover:scale-105 transition-transform duration-300 flex-shrink-0"
+            className={`object-cover rounded flex-shrink-0 transition-transform duration-300 group-hover:scale-105
+              ${large ? "w-20 h-16" : "w-12 h-9"}
+            `}
           />
-          <span className="text-xs text-gray-300 group-hover:text-green-400 transition-colors leading-tight">{item.title}</span>
+          <span
+            className={`ml-3 group-hover:text-green-400 transition-colors leading-tight
+              ${large ? "text-sm text-gray-300 line-clamp-2" : "text-xs text-gray-300"}
+            `}
+          >
+            {item.title}
+          </span>
         </div>
       ))}
     </div>
