@@ -35,11 +35,11 @@ export default function LatestNews({ items, large = false }) {
       {items.map((article) => (
         <div
           key={article.id}
-          className="relative transition-all duration-300 cursor-pointer group border 
+          className="relative flex items-center transition-all duration-300 cursor-pointer group border 
                    bg-gray-900/60 hover:bg-gray-800/60 border-gray-800 
                    min-h-[128px] overflow-visible rounded-lg"
         >
-          {/* Image anchored bottom-left, custom rounding only for image */}
+          {/* Image anchored bottom-left */}
           <img
             src={article.image}
             alt={article.title}
@@ -48,8 +48,8 @@ export default function LatestNews({ items, large = false }) {
                      transition-transform duration-300 group-hover:scale-105"
           />
 
-          {/* Text area padded to clear the image */}
-          <div className="pl-48 pr-5 py-4">
+          {/* Text area — flex keeps it centered with the image */}
+          <div className="pl-48 pr-5 flex flex-col justify-center">
             <h3 className="font-semibold text-white text-base mb-1 leading-tight group-hover:text-green-400">
               {article.title}
             </h3>
