@@ -18,7 +18,9 @@ export default function LatestNews({ items, large = false }) {
                 <h3 className="font-semibold text-white mb-2 text-sm group-hover:text-green-400 transition-colors leading-tight">
                   {article.title}
                 </h3>
-                <p className="text-gray-400 text-xs leading-relaxed">{article.excerpt}</p>
+                <p className="text-gray-400 text-xs leading-relaxed">
+                  {article.excerpt}
+                </p>
               </div>
             </div>
           </div>
@@ -34,16 +36,16 @@ export default function LatestNews({ items, large = false }) {
         <div
           key={article.id}
           className="relative transition-all duration-300 cursor-pointer group border 
-                     bg-gray-900/60 hover:bg-gray-800/60 border-gray-800 
-                     min-h-[128px] overflow-visible rounded-t-lg rounded-bl-lg"
+                   bg-gray-900/60 hover:bg-gray-800/60 border-gray-800 
+                   min-h-[128px] overflow-visible rounded-lg"
         >
-          {/* Image anchored bottom-left, no border rounding on bottom-right */}
+          {/* Image anchored bottom-left, custom rounding only for image */}
           <img
             src={article.image}
             alt={article.title}
             className="absolute bottom-0 -left-2 w-40 h-28 object-cover 
-                       rounded-t-md rounded-bl-md
-                       transition-transform duration-300 group-hover:scale-105"
+                     rounded-t-md rounded-bl-md
+                     transition-transform duration-300 group-hover:scale-105"
           />
 
           {/* Text area padded to clear the image */}

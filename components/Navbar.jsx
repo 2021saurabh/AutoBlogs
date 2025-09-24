@@ -16,19 +16,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4 transition-all duration-300
+      className={`top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-3 transition-all duration-300
         ${scrolled
           ? 'fixed bg-gradient-to-r from-white/60 to-gray-300/60 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
           : 'bg-black shadow-none'
         }`}
     >
-      <div className="flex items-center space-x-12">
+      <div className="flex items-center space-x-10">
         <div className="flex items-center">
           <img src="/api/placeholder/60/40" alt="Logo" className="h-10 w-auto" />
         </div>
 
-        {/* Five headings with wider spacing */}
-        <div className="hidden md:flex text-sm font-medium space-x-16 lg:space-x-24">
+        <div className="hidden md:flex text-sm font-medium space-x-10 lg:space-x-14">
           <a href="#" className={`transition-colors uppercase tracking-wide ${scrolled ? 'text-gray-900 hover:text-green-600' : 'text-gray-200 hover:text-green-400'}`}>LATEST NEWS</a>
           <a href="#" className={`transition-colors uppercase tracking-wide ${scrolled ? 'text-gray-900 hover:text-green-600' : 'text-gray-200 hover:text-green-400'}`}>REVIEWS</a>
           <a href="#" className={`transition-colors uppercase tracking-wide ${scrolled ? 'text-gray-900 hover:text-green-600' : 'text-gray-200 hover:text-green-400'}`}>TRENDING</a>
