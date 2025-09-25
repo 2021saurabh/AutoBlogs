@@ -13,7 +13,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // close drawer when route changes or Esc
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && setMobileOpen(false);
     window.addEventListener('keydown', onKey);
@@ -28,10 +27,9 @@ export default function Navbar() {
     <>
       <nav
         className={`top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-3 transition-all duration-300
-          ${
-            scrolled
-              ? 'fixed bg-gradient-to-r from-white/60 to-gray-300/60 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
-              : 'bg-black shadow-none'
+          ${scrolled
+            ? 'fixed bg-gradient-to-r from-white/60 to-gray-300/60 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
+            : 'bg-black shadow-none'
           }`}
       >
         {/* Left: logo + desktop links */}
@@ -50,9 +48,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Right: search, profile, hamburger */}
+        {/* Right: search, profile (desktop), hamburger */}
         <div className="flex items-center space-x-3">
-          {/* Search (hide on very small screens) */}
           <div className="relative hidden sm:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
@@ -64,12 +61,12 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Profile */}
-          <div className="w-10 h-10 bg-gray-700/70 rounded-full flex items-center justify-center">
+          {/* Desktop-only profile icon */}
+          <div className="hidden md:flex w-10 h-10 bg-gray-700/70 rounded-full items-center justify-center">
             <User className="w-5 h-5 text-gray-300" />
           </div>
 
-          {/* Hamburger (mobile only) */}
+          {/* Hamburger (mobile) */}
           <button
             aria-label="Open menu"
             className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md bg-gray-800/70 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -80,7 +77,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ===== Mobile slide-in drawer ===== */}
       {/* Overlay */}
       <div
         className={`fixed inset-0 z-50 md:hidden transition-opacity duration-300 ${
@@ -91,7 +87,7 @@ export default function Navbar() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
       </div>
 
-      {/* Drawer panel */}
+      {/* Drawer */}
       <aside
         className={`fixed top-0 left-0 z-50 h-full w-72 md:hidden
           transition-transform duration-300 ease-out
@@ -101,6 +97,7 @@ export default function Navbar() {
         role="dialog"
         aria-modal="true"
       >
+        {/* Drawer header */}
         <div className="flex items-center justify-between px-5 py-4">
           <span className={`text-sm font-semibold uppercase tracking-wide ${scrolled ? 'text-gray-900' : 'text-gray-200'}`}>
             Menu
@@ -114,15 +111,29 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* MY PROFILE section (top, separated) */}
+        <div className="px-5">
+          <a
+            href="#"
+            className={`block w-full text-left rounded-lg px-4 py-3 font-semibold tracking-wide
+              ${scrolled ? 'bg-white/80 text-gray-900 hover:bg-white' : 'bg-gray-800/80 text-gray-100 hover:bg-gray-800'}
+              transition-colors`}
+            onClick={() => setMobileOpen(false)}
+          >
+            MY PROFILE
+          </a>
+        </div>
+        <div className={`mt-4 mb-3 border-t ${scrolled ? 'border-gray-300' : 'border-gray-800'}`} />
+
         {/* Mobile links */}
-        <nav className="mt-2 px-5 space-y-4">
+        <nav className="px-5 space-y-4">
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>LATEST NEWS</a>
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>REVIEWS</a>
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>TRENDING</a>
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>VIDEOS</a>
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>ABOUT</a>
 
-          {/* Optional mobile search (compact) */}
+          {/* Compact mobile search */}
           <div className="mt-6">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
