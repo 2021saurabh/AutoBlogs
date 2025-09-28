@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Newsletter from "@/components/Newsletter";
@@ -12,6 +13,18 @@ import Footer from "@/components/Footer";
 import { ChevronRight } from "lucide-react";
 
 export default function Page() {
+  const [navH, setNavH] = useState(0);
+
+  useEffect(() => {
+    const nav = document.querySelector('nav');
+    const update = () => nav && setNavH(nav.getBoundingClientRect().height);
+    update();
+    const ro = new ResizeObserver(update);
+    if (nav) ro.observe(nav);
+    window.addEventListener('resize', update);
+    return () => { ro.disconnect(); window.removeEventListener('resize', update); };
+  }, []);
+
   const latestNews = [
     { id: 1, title: "TATA Altroz facelift revealed", excerpt: "TATA Motors unveils a new look for their popular hatchbook along with enhanced features and improved links.", image: "/api/placeholder/120/80", category: "Latest News" },
     { id: 2, title: "Mahindra's Vision S", excerpt: "The company is set to explore the dimensions of the premium SUV in The Thar.", image: "/api/placeholder/120/80", category: "Latest News" },
@@ -42,38 +55,34 @@ export default function Page() {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
 
-      {/* Just enough offset to clear navbar (~64px) */}
-      <main className="pt-20">
+      {/* dynamic offset under fixed navbar */}
+      <main style={{ paddingTop: navH }}>
         <div className="container mx-auto px-6 py-8 max-w-7xl">
+
           {/* Hero + Right Sidebar */}
           <div className="mb-8">
-            <div className="flex gap-6 h-[450px]">
-              {/* Hero takes 65% */}
-              <div className="w-[65%] h-full">
+            {/* ↓ mobile: column; desktop: original row layout */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:h-[450px]">
+              {/* Hero — keep 65% on lg+ exactly as before */}
+              <div className="w-full lg:w-[65%] h-full">
                 <Hero />
               </div>
 
-              {/* Sidebar takes 35% and splits vertically */}
-              <div className="w-[35%] h-full flex flex-col gap-6">
-                <div className="flex-1">
-                  <AdBox />
-                </div>
-                <div className="flex-1">
-                  <Newsletter />
-                </div>
+              {/* Sidebar — keep 35% on lg+ exactly as before */}
+              <div className="w-full lg:w-[35%] h-full flex flex-col gap-4 sm:gap-6 mt-4 lg:mt-0">
+                <div className="flex-1"><AdBox /></div>
+                <div className="flex-1"><Newsletter /></div>
               </div>
             </div>
           </div>
 
           {/* Latest + Trending */}
           <div className="mb-12">
-            <div className="flex gap-6 items-start">
-              {/* Latest News — 65% */}
-              <div className="w-[65%]">
+            {/* ↓ only stacks on <lg; lg+ remains identical */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+              <div className="w-full lg:w-[65%]">
                 <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">
-                    LATEST NEWS
-                  </h2>
+                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">LATEST NEWS</h2>
                 </div>
                 <LatestNews items={latestNews} large />
                 <div className="mt-8">
@@ -83,12 +92,9 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* Trending — 35% */}
-              <div className="w-[35%]">
+              <div className="w-full lg:w-[35%]">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">
-                    TRENDING
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">TRENDING</h3>
                 </div>
                 <Trending items={trendingNews} large />
               </div>
@@ -97,13 +103,11 @@ export default function Page() {
 
           {/* Reviews + Videos */}
           <div className="mb-12">
-            <div className="flex gap-6 items-start">
-              {/* Reviews — 65% */}
-              <div className="w-[65%]">
+            {/* ↓ only stacks on <lg; lg+ remains identical */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+              <div className="w-full lg:w-[65%]">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">
-                    REVIEWS
-                  </h2>
+                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">REVIEWS</h2>
                   <button className="text-green-500 hover:text-green-400 flex items-center text-sm">
                     View More <ChevronRight className="w-4 h-4 ml-1" />
                   </button>
@@ -111,17 +115,15 @@ export default function Page() {
                 <Reviews items={reviews} large />
               </div>
 
-              {/* Videos — 35% */}
-              <div className="w-[35%]">
+              <div className="w-full lg:w-[35%]">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">
-                    VIDEOS
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">VIDEOS</h3>
                 </div>
-                <Videos items={videos} large />
+                <Videos items={videos} />
               </div>
             </div>
           </div>
+
         </div>
       </main>
 
