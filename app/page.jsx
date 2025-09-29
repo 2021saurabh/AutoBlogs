@@ -25,24 +25,43 @@ export default function Page() {
     return () => { ro.disconnect(); window.removeEventListener('resize', update); };
   }, []);
 
-  const latestNews = [
-    { id: 1, title: "TATA Altroz facelift revealed", excerpt: "TATA Motors unveils a new look for their popular hatchbook along with enhanced features and improved links.", image: "/api/placeholder/120/80", category: "Latest News" },
-    { id: 2, title: "Mahindra's Vision S", excerpt: "The company is set to explore the dimensions of the premium SUV in The Thar.", image: "/api/placeholder/120/80", category: "Latest News" },
-    { id: 3, title: "Mahindra announces price cut upto 2.50 lakh", excerpt: "Mahindra has announced benefits of upto 2.50 lakh on its complete 2024 lineup during the festive season.", image: "/api/placeholder/120/80", category: "Latest News" }
-  ];
+ const latestNews = [
+  {
+    id: 1,
+    title: "Mahindra's Vision S",
+    excerpt: "The company is set to explore the dimensions of the premium SUV in The Thar.",
+    image: "/images/vision-s.jpeg",  
+    category: "Latest News",
+  },
+  {
+    id: 2,
+    title: "TATA Altroz facelift revealed",
+    excerpt: "TATA Motors unveils a new look for their popular hatchback...",
+    image: "/images/altroz.jpeg",
+    category: "Latest News",
+  },
+  {
+    id: 3,
+    title: "Mahindra announces price cut upto 2.50 lakh",
+    excerpt: "Benefits across the 2024 lineup during the festive season.",
+    image: "/images/mahindra-price-cut.jpeg",
+    category: "Latest News",
+  },
+];
+
 
   const trendingNews = [
-    { title: "Maruti's main share", image: "/api/placeholder/60/45" },
-    { title: "BMW S8 revealed", image: "/api/placeholder/60/45" },
-    { title: "BMW M4 CS new look", image: "/api/placeholder/60/45" },
-    { title: "DAKAR RALLY 2025", image: "/api/placeholder/60/45" }
-  ];
+  { title: "Maruti's main share", image: "/images/maruti.jpeg" },
+  { title: "BMW S8 revealed", image: "/images/bmw-s8.jpeg" },
+  { title: "BMW M4 CS new look", image: "/images/bmw-m4.jpeg" },
+  { title: "DAKAR RALLY 2025", image: "/images/dakar-rally-2025.jpeg" },
+];
 
   const reviews = [
-    { title: "Lotus Emira R", image: "/api/placeholder/140/100" },
-    { title: "Ford Focus RWB", image: "/api/placeholder/140/100" },
-    { title: "Ferrari 12 Cilindre", image: "/api/placeholder/140/100" },
-    { title: "Cadillac Celestiq", image: "/api/placeholder/140/100" }
+    { title: "Lotus Emira R", image: "/images/lotus-emira-r.jpeg" },
+    { title: "Ford Focus RWB", image: "/images/ford-focus-rwb.jpeg" },
+    { title: "Ferrari 12 Cilindre", image: "/images/ferrari-12-cilindre.jpeg" },
+    { title: "Cadillac Celestiq", image: "/images/cadillac-celestiq.jpeg" }
   ];
 
   const videos = [
