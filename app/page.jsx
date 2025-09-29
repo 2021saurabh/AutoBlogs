@@ -84,7 +84,9 @@ export default function Page() {
             <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:h-[450px]">
               {/* Hero — keep 65% on lg+ exactly as before */}
               <div className="w-full lg:w-[65%] h-full">
-                <Hero />
+                <div className="h-[220px] sm:h-[280px] md:h-[340px] lg:h-full">
+    <Hero />
+  </div>
               </div>
 
               {/* Sidebar — keep 35% on lg+ exactly as before */}
