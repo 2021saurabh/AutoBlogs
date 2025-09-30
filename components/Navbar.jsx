@@ -47,8 +47,8 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-3 transition-all duration-300
           ${scrolled
-            ? 'bg-gradient-to-r from-white/60 to-gray-300/60 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
-            : 'bg-black shadow-none'
+              ? 'bg-gradient-to-r from-white/20 to-gray-300/20 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
+              : 'bg-black shadow-none'
           }`}
       >
         {/* Left: Logo + desktop nav */}
