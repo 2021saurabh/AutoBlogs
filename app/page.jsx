@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Newsletter from "@/components/Newsletter";
@@ -12,42 +13,55 @@ import Footer from "@/components/Footer";
 import { ChevronRight } from "lucide-react";
 
 export default function Page() {
-  const latestNews = [
-    {
-      id: 1,
-      title: "TATA Altroz facelift revealed",
-      excerpt: "TATA Motors unveils a new look for their popular hatchbook along with enhanced features and improved links.",
-      image: "/api/placeholder/120/80",
-      category: "Latest News"
-    },
-    {
-      id: 2,
-      title: "Mahindra's Vision S",
-      excerpt: "The company is set to explore the dimensions of the premium SUV in The Thar.",
-      image: "/api/placeholder/120/80",
-      category: "Latest News"
-    },
-    {
-      id: 3,
-      title: "Mahindra announces price cut upto 2.50 lakh",
-      excerpt: "Mahindra has announced benefits of upto 2.50 lakh on its complete 2024 lineup during the festive season.",
-      image: "/api/placeholder/120/80",
-      category: "Latest News"
-    }
-  ];
+  const [navH, setNavH] = useState(0);
+
+  useEffect(() => {
+    const nav = document.querySelector('nav');
+    const update = () => nav && setNavH(nav.getBoundingClientRect().height);
+    update();
+    const ro = new ResizeObserver(update);
+    if (nav) ro.observe(nav);
+    window.addEventListener('resize', update);
+    return () => { ro.disconnect(); window.removeEventListener('resize', update); };
+  }, []);
+
+ const latestNews = [
+  {
+    id: 1,
+    title: "Mahindra's Vision S",
+    excerpt: "The company is set to explore the dimensions of the premium SUV in The Thar.",
+    image: "/images/vision-s.jpeg",  
+    category: "Latest News",
+  },
+  {
+    id: 2,
+    title: "TATA Altroz facelift revealed",
+    excerpt: "TATA Motors unveils a new look for their popular hatchback...",
+    image: "/images/altroz.jpeg",
+    category: "Latest News",
+  },
+  {
+    id: 3,
+    title: "Mahindra announces price cut upto 2.50 lakh",
+    excerpt: "Benefits across the 2024 lineup during the festive season.",
+    image: "/images/mahindra-price-cut.jpeg",
+    category: "Latest News",
+  },
+];
+
 
   const trendingNews = [
-    { title: "Maruti's main share", image: "/api/placeholder/60/45" },
-    { title: "BMW S8 revealed", image: "/api/placeholder/60/45" },
-    { title: "BMW M4 CS new look", image: "/api/placeholder/60/45" },
-    { title: "DAKAR RALLY 2025", image: "/api/placeholder/60/45" }
-  ];
+  { title: "Maruti's main share", image: "/images/maruti.jpeg" },
+  { title: "BMW S8 revealed", image: "/images/bmw-s8.jpeg" },
+  { title: "BMW M4 CS new look", image: "/images/bmw-m4.jpeg" },
+  { title: "DAKAR RALLY 2025", image: "/images/dakar-rally-2025.jpeg" },
+];
 
   const reviews = [
-    { title: "Lotus Emira R", image: "/api/placeholder/140/100" },
-    { title: "Ford Focus RWB", image: "/api/placeholder/140/100" },
-    { title: "Ferrari 12 Cilindre", image: "/api/placeholder/140/100" },
-    { title: "Cadillac Celestiq", image: "/api/placeholder/140/100" }
+    { title: "Lotus Emira R", image: "/images/lotus-emira-r.jpeg" },
+    { title: "Ford Focus RWB", image: "/images/ford-focus-rwb.jpeg" },
+    { title: "Ferrari 12 Cilindre", image: "/images/ferrari-12-cilindre.jpeg" },
+    { title: "Cadillac Celestiq", image: "/images/cadillac-celestiq.jpeg" }
   ];
 
   const videos = [
@@ -60,64 +74,79 @@ export default function Page() {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <div className="container mx-auto px-6 py-8 max-w-7xl">
-        {/* Hero + Right Sidebar */}
-        <div className="mb-8">
-          <div className="flex gap-6">
-            <div className="flex-1">
-              <Hero />
-            </div>
-            <div className="w-80 space-y-6">
-              <Newsletter />
-              <AdBox />
-            </div>
-          </div>
-        </div>
+      {/* dynamic offset under fixed navbar */}
+      <main style={{ paddingTop: navH }}>
+        <div className="container mx-auto px-6 py-8 max-w-7xl">
 
-        {/* Latest + Trending */}
-        <div className="mb-12">
-          <div className="flex gap-6">
-            <div className="flex-1">
-              <div className="mb-4">
-                <h2 className="text-lg font-bold text-white uppercase tracking-wide">LATEST NEWS</h2>
+          {/* Hero + Right Sidebar */}
+          <div className="mb-8">
+            {/* ↓ mobile: column; desktop: original row layout */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:h-[450px]">
+              {/* Hero — keep 65% on lg+ exactly as before */}
+              <div className="w-full lg:w-[65%] h-full">
+                <div className="h-[220px] sm:h-[280px] md:h-[340px] lg:h-full">
+    <Hero />
+  </div>
               </div>
-              <LatestNews items={latestNews} />
-              <div className="mt-6">
-                <button className="bg-green-600 hover:bg-green-500 text-white px-8 py-2 rounded-full text-sm font-medium transition-colors">
-                  View More
-                </button>
-              </div>
-            </div>
-            <div className="w-80">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-white uppercase tracking-wide">TRENDING</h3>
-              </div>
-              <Trending items={trendingNews} />
-            </div>
-          </div>
-        </div>
 
-        {/* Reviews + Videos */}
-        <div className="mb-12">
-          <div className="flex gap-6">
-            <div className="flex-1">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-bold text-white uppercase tracking-wide">REVIEWS</h2>
-                <button className="text-green-500 hover:text-green-400 flex items-center text-sm">
-                  View More <ChevronRight className="w-4 h-4 ml-1" />
-                </button>
+              {/* Sidebar — keep 35% on lg+ exactly as before */}
+              <div className="w-full lg:w-[35%] h-full flex flex-col gap-4 sm:gap-6 mt-4 lg:mt-0">
+                <div className="flex-1"><AdBox /></div>
+                <div className="flex-1"><Newsletter /></div>
               </div>
-              <Reviews items={reviews} />
-            </div>
-            <div className="w-80">
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-white uppercase tracking-wide">VIDEOS</h3>
-              </div>
-              <Videos items={videos} />
             </div>
           </div>
+
+          {/* Latest + Trending */}
+          <div className="mb-12">
+            {/* ↓ only stacks on <lg; lg+ remains identical */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+              <div className="w-full lg:w-[65%]">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">LATEST NEWS</h2>
+                </div>
+                <LatestNews items={latestNews} large />
+                <div className="mt-8">
+                  <button className="bg-green-600 hover:bg-green-500 text-white px-8 py-2 rounded-full text-sm font-medium transition-colors">
+                    View More
+                  </button>
+                </div>
+              </div>
+
+              <div className="w-full lg:w-[35%]">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">TRENDING</h3>
+                </div>
+                <Trending items={trendingNews} large />
+              </div>
+            </div>
+          </div>
+
+          {/* Reviews + Videos */}
+          <div className="mb-12">
+            {/* ↓ only stacks on <lg; lg+ remains identical */}
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+              <div className="w-full lg:w-[65%]">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">REVIEWS</h2>
+                  <button className="text-green-500 hover:text-green-400 flex items-center text-sm">
+                    View More <ChevronRight className="w-4 h-4 ml-1" />
+                  </button>
+                </div>
+                <Reviews items={reviews} large />
+              </div>
+
+              <div className="w-full lg:w-[35%]">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">VIDEOS</h3>
+                </div>
+                <Videos items={videos} />
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

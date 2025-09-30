@@ -1,6 +1,6 @@
 export default function Newsletter() {
   return (
-    <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
+    <div className="bg-gray-900/50 h-full p-6 rounded-lg border border-gray-800 flex flex-col justify-center">
       <h3 className="text-lg font-bold mb-4 text-center uppercase tracking-wide">NEWSLETTER</h3>
       <div className="space-y-3">
         <input
