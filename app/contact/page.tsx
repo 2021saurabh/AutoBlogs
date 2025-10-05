@@ -99,8 +99,8 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Advertising & Partnerships */}
-            <div className="relative rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-800/40 p-8 overflow-hidden group hover:border-green-500/50 transition-all duration-300">
+            {/* Advertising & Partnerships - Added ID here */}
+            <div id="advertising" className="relative rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-800/40 p-8 overflow-hidden group hover:border-green-500/50 transition-all duration-300 scroll-mt-24">
               <div className="absolute top-0 right-0 w-48 h-48 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/10 transition-all"></div>
               
               <div className="relative z-10">

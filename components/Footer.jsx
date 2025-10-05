@@ -10,7 +10,7 @@ export default function Footer() {
             <a href="/about" className="text-gray-400 hover:text-white transition-colors">ABOUT</a>
             <a href="/contact" className="text-gray-400 hover:text-white transition-colors">CONTACT</a>
             <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">PRIVACY</a>
-            <a href="/advertise" className="text-gray-400 hover:text-white transition-colors">ADVERTISE</a>
+            <a href="/contact#advertising" className="text-gray-400 hover:text-white transition-colors">ADVERTISE</a>
           </div>
 
           {/* Follow Us — desktop: inline with space-x-4; mobile: stacked */}
