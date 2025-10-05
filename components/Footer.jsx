@@ -7,10 +7,10 @@ export default function Footer() {
           
           {/* Links — desktop: inline with space-x-6; mobile: stacked */}
           <div className="flex flex-col items-center gap-3 md:flex-row md:gap-0 md:space-x-6 text-sm">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">ABOUT</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">CONTACT</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">PRIVACY</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">ADVERTISE</a>
+            <a href="/about" className="text-gray-400 hover:text-white transition-colors">ABOUT</a>
+            <a href="/contact" className="text-gray-400 hover:text-white transition-colors">CONTACT</a>
+            <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">PRIVACY</a>
+            <a href="/advertise" className="text-gray-400 hover:text-white transition-colors">ADVERTISE</a>
           </div>
 
           {/* Follow Us — desktop: inline with space-x-4; mobile: stacked */}
