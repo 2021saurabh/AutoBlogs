@@ -21,7 +21,7 @@ export default function Navbar() {
 
   // ESC to close drawer or mobile search
   useEffect(() => {
-    const onKey = (e) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setMobileOpen(false);
         setMobileSearchOpen(false);
@@ -40,12 +40,14 @@ export default function Navbar() {
     };
   }, [mobileOpen, mobileSearchOpen]);
 
-  // Base link classes (unchanged)
+  // === COLORS ===
+  // Unscrolled: keep your original light theme on black header
+  // Scrolled: use project green for link text (no black text)
   const baseLinkClass = `transition-colors uppercase tracking-wide ${
-    scrolled ? 'text-gray-900 hover:text-green-600' : 'text-gray-200 hover:text-green-400'
+    scrolled ? 'text-green-600 hover:text-green-500' : 'text-gray-200 hover:text-green-400'
   }`;
 
-  // Active-state color (just text tint; subtle and theme-aware)
+  // Active-state tint (keep consistent with project green scale)
   const activeClass = scrolled ? 'text-green-700' : 'text-green-400';
 
   // Helper to compose classes + aria-current
@@ -64,29 +66,42 @@ export default function Navbar() {
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-3 transition-all duration-300
           ${
             scrolled
-              ? 'bg-gradient-to-r from-white/20 to-gray-300/20 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
-              : 'bg-black shadow-none'
+              ? "bg-gradient-to-r from-white/20 to-gray-300/20 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md"
+              : "bg-black shadow-none"
           }`}
       >
         {/* Left: Logo + desktop nav */}
         <div className="flex items-center space-x-16">
           <div className="flex items-center">
-            <img src="/api/placeholder/60/40" alt="Logo" className="h-10 w-auto" />
+            <img
+              src="/api/placeholder/60/40"
+              alt="Logo"
+              className="h-10 w-auto"
+            />
           </div>
 
           <div className="hidden md:flex text-sm font-medium space-x-10 lg:space-x-14">
-            {/* If you later set real routes, highlight will work automatically */}
-            <a href="#" className={baseLinkClass}>LATEST NEWS</a>
-            <a href="#" className={baseLinkClass}>REVIEWS</a>
-            <a href="#" className={baseLinkClass}>TRENDING</a>
-            <a href="#" className={baseLinkClass}>VIDEOS</a>
-            <a href="/about" {...getLinkProps('/about')}>ABOUT</a>
+            <a href="/latest-news" {...getLinkProps("/latest-news")}>
+              LATEST NEWS
+            </a>
+            <a href="/reviews" {...getLinkProps("/reviews")}>
+              REVIEWS
+            </a>
+            <a href="/trending" {...getLinkProps("/trending")}>
+              TRENDING
+            </a>
+            <a href="/videos" {...getLinkProps("/videos")}>
+              VIDEOS
+            </a>
+            <a href="/about" {...getLinkProps("/about")}>
+              ABOUT
+            </a>
           </div>
         </div>
 
         {/* Right: desktop search + profile, mobile search icon + hamburger */}
         <div className="flex items-center space-x-3">
-          {/* Desktop search (unchanged) */}
+          {/* Desktop search */}
           <div className="relative hidden sm:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
@@ -98,12 +113,12 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Desktop profile icon (unchanged) */}
+          {/* Desktop profile icon */}
           <div className="hidden md:flex w-10 h-10 bg-gray-700/70 rounded-full items-center justify-center">
             <User className="w-5 h-5 text-gray-300" />
           </div>
 
-          {/* Mobile search icon (unchanged) */}
+          {/* Mobile search icon (expands search below header) */}
           <button
             aria-label="Open search"
             className="sm:hidden inline-flex items-center justify-center w-10 h-10 rounded-md bg-gray-800/70 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -115,7 +130,7 @@ export default function Navbar() {
             <Search className="w-5 h-5 text-white" />
           </button>
 
-          {/* Hamburger (unchanged) */}
+          {/* Hamburger */}
           <button
             aria-label="Open menu"
             className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md bg-gray-800/70 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -128,15 +143,17 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile expanding search (unchanged) */}
+        {/* Mobile expanding search */}
         <div
           className={`sm:hidden absolute left-0 right-0 top-full px-4 transition-[max-height,opacity] duration-300 overflow-hidden
-            ${mobileSearchOpen ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}
+            ${mobileSearchOpen ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}
           `}
         >
           <div
             className={`relative mt-2 rounded-full border ${
-              scrolled ? 'bg-white/80 text-black border-gray-300' : 'bg-gray-800/80 text-white border-gray-700'
+              scrolled
+                ? "bg-white/80 text-black border-gray-300"
+                : "bg-gray-800/80 text-white border-gray-700"
             }`}
           >
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
@@ -153,7 +170,11 @@ export default function Navbar() {
               className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex w-7 h-7 items-center justify-center rounded-full hover:bg-black/10"
               onClick={() => setMobileSearchOpen(false)}
             >
-              <X className={`w-4 h-4 ${scrolled ? 'text-gray-700' : 'text-gray-300'}`} />
+              <X
+                className={`w-4 h-4 ${
+                  scrolled ? "text-gray-700" : "text-gray-300"
+                }`}
+              />
             </button>
           </div>
         </div>
@@ -162,26 +183,38 @@ export default function Navbar() {
       {/* ====== MOBILE DRAWER (with overlay) ====== */}
       <div
         className={`fixed inset-0 z-[60] md:hidden transition-opacity duration-300 ${
-          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          mobileOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileOpen(false)}
       >
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
       </div>
 
-      {/* Drawer panel (unchanged) */}
+      {/* Drawer panel */}
       <aside
         className={`fixed top-0 left-0 z-[60] h-full w-72 md:hidden
           transition-transform duration-300 ease-out
-          ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
-          ${scrolled ? 'bg-gradient-to-b from-white/70 to-gray-200/70' : 'bg-black/90'}
-          backdrop-blur-md border-r ${scrolled ? 'border-gray-200' : 'border-gray-800'}`}
+          ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
+          ${
+            scrolled
+              ? "bg-gradient-to-b from-white/70 to-gray-200/70"
+              : "bg-black/90"
+          }
+          backdrop-blur-md border-r ${
+            scrolled ? "border-gray-200" : "border-gray-800"
+          }`}
         role="dialog"
         aria-modal="true"
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between px-5 py-4">
-          <span className={`text-sm font-semibold uppercase tracking-wide ${scrolled ? 'text-gray-900' : 'text-gray-200'}`}>
+          <span
+            className={`text-sm font-semibold uppercase tracking-wide ${
+              scrolled ? "text-gray-900" : "text-gray-200"
+            }`}
+          >
             Menu
           </span>
           <button
@@ -189,20 +222,62 @@ export default function Navbar() {
             className="inline-flex items-center justify-center w-9 h-9 rounded-md hover:bg-black/10"
             onClick={() => setMobileOpen(false)}
           >
-            <X className={`w-5 h-5 ${scrolled ? 'text-gray-900' : 'text-gray-200'}`} />
+            <X
+              className={`w-5 h-5 ${
+                scrolled ? "text-gray-900" : "text-gray-200"
+              }`}
+            />
           </button>
         </div>
 
         {/* Menu links */}
         <nav className="px-5 space-y-4">
-          <a href="#" className={`${baseLinkClass} block`} onClick={() => setMobileOpen(false)}>LATEST NEWS</a>
-          <a href="#" className={`${baseLinkClass} block`} onClick={() => setMobileOpen(false)}>REVIEWS</a>
-          <a href="#" className={`${baseLinkClass} block`} onClick={() => setMobileOpen(false)}>TRENDING</a>
-          <a href="#" className={`${baseLinkClass} block`} onClick={() => setMobileOpen(false)}>VIDEOS</a>
+          <a
+            href="/latest-news"
+            {...getLinkProps("/latest-news")}
+            className={`${baseLinkClass} ${
+              pathname === "/latest-news" ? activeClass : ""
+            } block`}
+            onClick={() => setMobileOpen(false)}
+          >
+            LATEST NEWS
+          </a>
+          <a
+            href="/reviews"
+            {...getLinkProps("/reviews")}
+            className={`${baseLinkClass} ${
+              pathname === "/reviews" ? activeClass : ""
+            } block`}
+            onClick={() => setMobileOpen(false)}
+          >
+            REVIEWS
+          </a>
+          <a
+            href="/trending"
+            {...getLinkProps("/trending")}
+            className={`${baseLinkClass} ${
+              pathname === "/trending" ? activeClass : ""
+            } block`}
+            onClick={() => setMobileOpen(false)}
+          >
+            TRENDING
+          </a>
+          <a
+            href="/videos"
+            {...getLinkProps("/videos")}
+            className={`${baseLinkClass} ${
+              pathname === "/videos" ? activeClass : ""
+            } block`}
+            onClick={() => setMobileOpen(false)}
+          >
+            VIDEOS
+          </a>
           <a
             href="/about"
-            {...getLinkProps('/about')}
-            className={`${baseLinkClass} ${pathname === '/about' ? activeClass : ''} block`}
+            {...getLinkProps("/about")}
+            className={`${baseLinkClass} ${
+              pathname === "/about" ? activeClass : ""
+            } block`}
             onClick={() => setMobileOpen(false)}
           >
             ABOUT
