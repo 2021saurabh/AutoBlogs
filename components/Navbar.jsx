@@ -57,7 +57,7 @@ export default function Navbar() {
             <a href="#" className={linkClass}>REVIEWS</a>
             <a href="#" className={linkClass}>TRENDING</a>
             <a href="#" className={linkClass}>VIDEOS</a>
-            <a href="#" className={linkClass}>ABOUT</a>
+            <a href="/about" className={linkClass}>ABOUT</a>
           </div>
         </div>
 
@@ -155,7 +155,7 @@ export default function Navbar() {
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>REVIEWS</a>
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>TRENDING</a>
           <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>VIDEOS</a>
-          <a href="#" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>ABOUT</a>
+          <a href="/about" className={`${linkClass} block`} onClick={() => setMobileOpen(false)}>ABOUT</a>
         </nav>
       </aside>
     </>
