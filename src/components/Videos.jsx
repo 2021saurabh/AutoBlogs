@@ -2,11 +2,11 @@ import { Play } from "lucide-react";
 
 export default function Videos({ items }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 h-full flex flex-col">
       {items.map((video, index) => (
         <div
           key={index}
-          className="flex items-center gap-3 bg-gray-900/50 rounded-lg border border-gray-800 hover:bg-gray-800/50 transition-colors cursor-pointer group"
+          className="flex items-center gap-3 bg-gray-900/50 rounded-lg border border-gray-800 hover:bg-gray-800/50 transition-colors cursor-pointer group flex-1"
         >
           {/* Thumbnail */}
           <div className="relative w-20 h-14 flex-shrink-0">

@@ -2,21 +2,21 @@ import Image from "next/image";
 
 export default function Reviews({ items }) {
   return (
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-2 gap-6 h-full">
       {items.map((review, index) => (
         <div
           key={index}
-          className="bg-gray-900/60 rounded-lg overflow-hidden hover:bg-gray-800/60 transition-all duration-300 cursor-pointer group border border-gray-800"
+          className="bg-gray-900/60 rounded-lg overflow-hidden hover:bg-gray-800/60 transition-all duration-300 cursor-pointer group border border-gray-800 flex flex-col"
         >
           {/* Thumbnail */}
           <div className="relative w-full h-40">
             <Image
-              src={review.image} // e.g. "/images/ferrari.jpg"
+              src={review.image}
               alt={review.title}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={index === 0} // only first review eager-loads
+              priority={index === 0}
             />
           </div>
 

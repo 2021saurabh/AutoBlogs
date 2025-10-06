@@ -68,7 +68,6 @@ export default function Page() {
       <main>
         <NavOffset />
         <div className="container mx-auto px-6 py-8 max-w-7xl">
-
           {/* Hero + Right Sidebar */}
           <div className="mb-8">
             {/* ↓ mobile: column; desktop: original row layout */}
@@ -76,14 +75,18 @@ export default function Page() {
               {/* Hero — keep 65% on lg+ exactly as before */}
               <div className="w-full lg:w-[65%] h-full">
                 <div className="h-[220px] sm:h-[280px] md:h-[340px] lg:h-full">
-    <Hero />
-  </div>
+                  <Hero />
+                </div>
               </div>
 
               {/* Sidebar — keep 35% on lg+ exactly as before */}
               <div className="w-full lg:w-[35%] h-full flex flex-col gap-4 sm:gap-6 mt-4 lg:mt-0">
-                <div className="flex-1"><AdBox /></div>
-                <div className="flex-1"><Newsletter /></div>
+                <div className="flex-1">
+                  <AdBox />
+                </div>
+                <div className="flex-1">
+                  <Newsletter />
+                </div>
               </div>
             </div>
           </div>
@@ -94,7 +97,9 @@ export default function Page() {
             <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
               <div className="w-full lg:w-[65%]">
                 <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">LATEST NEWS</h2>
+                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">
+                    LATEST NEWS
+                  </h2>
                 </div>
                 <LatestNews items={latestNews} large />
                 <div className="mt-8">
@@ -106,7 +111,9 @@ export default function Page() {
 
               <div className="w-full lg:w-[35%]">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">TRENDING</h3>
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">
+                    TRENDING
+                  </h3>
                 </div>
                 <Trending items={trendingNews} large />
               </div>
@@ -115,27 +122,33 @@ export default function Page() {
 
           {/* Reviews + Videos */}
           <div className="mb-12">
-            {/* ↓ only stacks on <lg; lg+ remains identical */}
-            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
+            <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
               <div className="w-full lg:w-[65%]">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">REVIEWS</h2>
+                  <h2 className="text-2xl font-bold text-white uppercase tracking-wide">
+                    REVIEWS
+                  </h2>
                   <button className="text-green-500 hover:text-green-400 flex items-center text-sm">
                     View More <ChevronRight className="w-4 h-4 ml-1" />
                   </button>
                 </div>
-                <Reviews items={reviews} large />
+                <div className="h-[440px]">
+                  <Reviews items={reviews} large />
+                </div>
               </div>
 
               <div className="w-full lg:w-[35%]">
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">VIDEOS</h3>
+                  <h3 className="text-2xl font-bold text-white uppercase tracking-wide">
+                    VIDEOS
+                  </h3>
                 </div>
-                <Videos items={videos} />
+                <div className="h-[440px]">
+                  <Videos items={videos} />
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </main>
 
