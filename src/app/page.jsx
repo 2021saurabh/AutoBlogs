@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -14,7 +15,6 @@ import { ChevronRight } from "lucide-react";
 import NavOffset from "@/components/NavOffset";
 
 export default function Page() {
-
 
  const latestNews = [
   {
@@ -103,9 +103,12 @@ export default function Page() {
                 </div>
                 <LatestNews items={latestNews} large />
                 <div className="mt-8">
-                  <button className="bg-green-600 hover:bg-green-500 text-white px-8 py-2 rounded-full text-sm font-medium transition-colors">
+                  <Link
+                    href="/latest-news"
+                    className="inline-flex items-center bg-green-600 hover:bg-green-500 text-white px-8 py-2 rounded-full text-sm font-medium transition-colors"
+                  >
                     View More
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -128,9 +131,12 @@ export default function Page() {
                   <h2 className="text-2xl font-bold text-white uppercase tracking-wide">
                     REVIEWS
                   </h2>
-                  <button className="text-green-500 hover:text-green-400 flex items-center text-sm">
+                  <Link
+                    href="/reviews"
+                    className="text-green-500 hover:text-green-400 flex items-center text-sm"
+                  >
                     View More <ChevronRight className="w-4 h-4 ml-1" />
-                  </button>
+                  </Link>
                 </div>
                 <div className="h-[440px]">
                   <Reviews items={reviews} large />
