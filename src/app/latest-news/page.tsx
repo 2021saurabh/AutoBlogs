@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import NavOffset from '@/components/NavOffset';
 import LatestNews from '@/components/LatestNews';
+import { Calendar, TrendingUp, Newspaper } from 'lucide-react';
 
 export const metadata = {
   title: 'Latest News — Motormiles',
@@ -10,7 +11,6 @@ export const metadata = {
 };
 
 export default function LatestNewsPage() {
-  // Replace with real data later (fetch from API/CMS)
   const items = [
     {
       id: 1,
@@ -36,7 +36,7 @@ export default function LatestNewsPage() {
     {
       id: 4,
       title: "Maruti Q4 update",
-      excerpt: "Maruti’s market share remains strong with compact SUV momentum.",
+      excerpt: "Maruti's market share remains strong with compact SUV momentum.",
       image: "/images/maruti.jpeg",
       category: "Latest News",
     },
@@ -76,16 +76,119 @@ export default function LatestNewsPage() {
       <NavOffset />
 
       <main className="flex-1">
-        <div className="container mx-auto max-w-7xl px-6 py-10">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">
-            <span className="text-green-500">Latest</span> News
-          </h1>
+        <div className="container mx-auto max-w-7xl px-6 py-12 md:py-16">
+          {/* Hero Header Section */}
+          <section className="mb-12 md:mb-16">
+            <div className="relative overflow-hidden rounded-3xl border border-gray-800 bg-gradient-to-br from-green-950/30 via-gray-900/60 to-gray-800/40 p-8 md:p-12 lg:p-16">
+              {/* Accent line */}
+              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-green-500 via-green-400 to-emerald-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center justify-center">
+                    <Newspaper className="w-6 h-6 md:w-7 md:h-7 text-green-400" />
+                  </div>
+                  <div>
+                    <span className="text-green-400 text-xs md:text-sm font-semibold tracking-widest uppercase block mb-1">
+                      Stay Updated
+                    </span>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+                      Latest <span className="bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 bg-clip-text text-transparent">News</span>
+                    </h1>
+                  </div>
+                </div>
+                
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl font-light">
+                  Breaking stories, exclusive launches, and the latest updates from the automotive world — all in one place.
+                </p>
+              </div>
+              
+              {/* Decorative element */}
+              <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-green-500/5 rounded-full blur-3xl"></div>
+            </div>
+          </section>
 
-          {/* Full list using your component (large layout) */}
-          <LatestNews items={items} large />
+          {/* Stats Bar */}
+          {/* <section className="mb-10 md:mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="rounded-xl border border-gray-800 bg-gray-900/40 p-6 text-center hover:border-green-500/30 transition-colors">
+                <div className="flex items-center justify-center mb-2">
+                  <Calendar className="w-5 h-5 text-green-400" />
+                </div>
+                <p className="text-2xl font-bold text-white mb-1">{items.length}</p>
+                <p className="text-sm text-gray-400">Stories Today</p>
+              </div>
+              
+              <div className="rounded-xl border border-gray-800 bg-gray-900/40 p-6 text-center hover:border-green-500/30 transition-colors">
+                <div className="flex items-center justify-center mb-2">
+                  <TrendingUp className="w-5 h-5 text-green-400" />
+                </div>
+                <p className="text-2xl font-bold text-white mb-1">24/7</p>
+                <p className="text-sm text-gray-400">Live Updates</p>
+              </div>
+              
+              <div className="rounded-xl border border-gray-800 bg-gray-900/40 p-6 text-center hover:border-green-500/30 transition-colors">
+                <div className="flex items-center justify-center mb-2">
+                  <Newspaper className="w-5 h-5 text-green-400" />
+                </div>
+                <p className="text-2xl font-bold text-white mb-1">100+</p>
+                <p className="text-sm text-gray-400">Weekly Articles</p>
+              </div>
+            </div>
+          </section> */}
 
-          {/* Optional: spacing at bottom for visual comfort */}
-          <div className="h-10" />
+          {/* Filter/Sort Bar */}
+          <section className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-400">Showing</span>
+              <span className="text-sm font-semibold text-white">{items.length} articles</span>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-gray-400">Sort by:</span>
+              <button className="px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-sm font-medium hover:bg-green-500/20 transition-colors">
+                Most Recent
+              </button>
+              <button className="px-4 py-2 rounded-lg border border-gray-800 text-gray-400 text-sm font-medium hover:border-gray-700 hover:text-white transition-colors">
+                Popular
+              </button>
+            </div>
+          </section>
+
+          {/* News Grid */}
+          <section className="mb-12">
+            <LatestNews items={items} large />
+          </section>
+
+          {/* Load More CTA */}
+          <section className="text-center py-8">
+            <div className="inline-flex flex-col items-center gap-4">
+              <p className="text-gray-400 text-sm">Want to see more stories?</p>
+              <button className="px-8 py-3 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg transition-colors shadow-lg shadow-green-500/20">
+                Load More Articles
+              </button>
+            </div>
+          </section>
+
+          {/* Newsletter CTA */}
+          <section className="rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-950/40 via-gray-900/60 to-gray-900/40 p-8 md:p-12 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">
+              Never Miss an <span className="text-green-400">Update</span>
+            </h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Subscribe to our newsletter and get the latest automotive news delivered straight to your inbox.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 transition-colors"
+              />
+              <button className="px-6 py-3 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg transition-colors whitespace-nowrap">
+                Subscribe
+              </button>
+            </div>
+          </section>
         </div>
       </main>
 
