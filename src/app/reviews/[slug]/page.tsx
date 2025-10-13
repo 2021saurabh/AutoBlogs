@@ -192,3 +192,160 @@ export default function ReviewDetailPage({ params }: { params: { slug: string } 
   );
 }
 
+
+
+
+
+
+
+
+// // app/reviews/[slug]/page.tsx
+// import Navbar from '@/components/Navbar';
+// import Footer from '@/components/Footer';
+// import NavOffset from '@/components/NavOffset';
+// import Image from 'next/image';
+
+// // Mock data - replace with API fetch later
+// const getReviewData = (slug: string) => {
+//   const reviews: Record<string, any> = {
+//     'ferrari-12-cilindre': {
+//       title: 'Ferrari 12 Cilindre',
+//       mainImage: '/images/ferrari-12-cilindre.jpeg',
+//       category: 'PERFORMANCE',
+//       date: 'January 15, 2025',
+//       specs: [
+//         { label: 'WHY WE LIKE IT', value: 'Naturally aspirated V12, sublime handling, timeless design' },
+//         { label: 'WHY WE DON\'T', value: 'Expensive running costs, limited practicality' },
+//         { label: 'PRICE TAG', value: '₹5.2 Crore (est.)' },
+//       ],
+//       sections: [
+//         {
+//           heading: 'PROS AND PERFORMANCE PROFILE',
+//           image: '/images/ferrari-12-cilindre.jpeg',
+//           content: `Ferrari's 12Cilindre represents the end of an era—the final naturally aspirated V12 grand tourer from Maranello. At its core beats a 6.5-liter V12 that redlines at 9,500 rpm, producing 819 horsepower and 678 Nm of torque.
+
+// The engine delivery is intoxicating. Floor the throttle and the 12Cilindre launches with ferocity that pins you to the seat. The 8-speed dual-clutch transmission snaps through gears with millisecond precision, while the V12 wails its way to the stratosphere.
+
+// Despite its supercar performance, the 12Cilindre is remarkably docile in everyday driving. The suspension, while firm, absorbs most road imperfections with grace. The steering is beautifully weighted, providing constant feedback without being heavy.`
+//         },
+//         {
+//           heading: 'INTERIOR LUXURY',
+//           image: '/images/ferrari-12-cilindre.jpeg',
+//           content: `Inside, Ferrari has created a driver-focused cockpit that blends modern technology with traditional craftsmanship. The digital instrument cluster is customizable, the steering wheel houses all essential controls, and the infotainment system is intuitive.
+
+// Materials throughout are top-notch—leather, Alcantara, and carbon fiber combine to create an environment that feels both luxurious and purposeful. The seats provide excellent support during spirited driving while remaining comfortable for long journeys.`
+//         },
+//         {
+//           heading: 'THE FINAL VERDICT',
+//           content: `The Ferrari 12Cilindre is more than just a car—it's a statement, a celebration of internal combustion in its purest form. In an era of forced induction and electrification, this naturally aspirated V12 feels like a defiant middle finger to progress.
+
+// Is it the best grand tourer Ferrari has ever built? That's subjective. But it's certainly the most emotional, the most engaging, and likely the last of its kind. For enthusiasts who appreciate the romance of a high-revving V12, the 12Cilindre represents the end of an era—and what a way to go out.`
+//         }
+//       ]
+//     }
+//   };
+
+//   return reviews[slug] || reviews['ferrari-12-cilindre'];
+// };
+
+// export async function generateMetadata({ params }: { params: { slug: string } }) {
+//   const review = getReviewData(params.slug);
+//   return {
+//     title: `${review.title} Review — Motormiles`,
+//     description: `In-depth review of the ${review.title}`,
+//   };
+// }
+
+// export default function ReviewDetailPage({ params }: { params: { slug: string } }) {
+//   const review = getReviewData(params.slug);
+
+//   return (
+//     <div className="min-h-screen bg-black text-white">
+//       <Navbar />
+//       <NavOffset />
+
+//       <main className="container mx-auto max-w-7xl px-6 py-8">
+//         <div className="flex flex-col lg:flex-row gap-8">
+//           {/* Left Column - Main Content (65%) */}
+//           <div className="lg:w-[65%]">
+//             {/* Title */}
+//             <div className="mb-6">
+//               <div className="text-xs text-green-500 font-semibold mb-2 tracking-widest">
+//                 {review.category}
+//               </div>
+//               <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+//                 {review.title.toLowerCase().split(' ').map((word: string) => 
+//                   word.charAt(0).toUpperCase() + word.slice(1)
+//                 ).join(' ')}
+//               </h1>
+//               <p className="text-sm text-gray-400">{review.date}</p>
+//             </div>
+
+//             {/* Main Image */}
+//             <div className="relative h-[300px] md:h-[400px] mb-8 rounded-lg overflow-hidden bg-gray-900">
+//               <Image
+//                 src={review.mainImage}
+//                 alt={review.title}
+//                 fill
+//                 className="object-cover"
+//                 priority
+//               />
+//             </div>
+
+//             {/* Content Sections */}
+//             <div className="space-y-8">
+//               {review.sections.map((section: any, index: number) => (
+//                 <div key={index}>
+//                   <h2 className="text-sm font-bold text-white mb-4 tracking-wide">
+//                     {section.heading}
+//                   </h2>
+                  
+//                   {section.image && (
+//                     <div className="relative h-[250px] md:h-[300px] mb-4 rounded-lg overflow-hidden bg-gray-900">
+//                       <Image
+//                         src={section.image}
+//                         alt={section.heading}
+//                         fill
+//                         className="object-cover"
+//                       />
+//                     </div>
+//                   )}
+                  
+//                   <div className="text-sm text-gray-300 leading-relaxed whitespace-pre-line">
+//                     {section.content}
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Right Sidebar - Specs (35%) */}
+//           <div className="lg:w-[35%]">
+//             <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-800 lg:sticky lg:top-24">
+//               {/* Placeholder for Ad/Image */}
+//               <div className="bg-gray-800 h-48 rounded-lg mb-6 flex items-center justify-center text-gray-600 text-sm">
+//                 Advertisement
+//               </div>
+
+//               {/* Specs */}
+//               <div className="space-y-4">
+//                 {review.specs.map((spec: any, index: number) => (
+//                   <div key={index} className="border-b border-gray-800 pb-4 last:border-0">
+//                     <p className="text-xs text-gray-500 font-semibold mb-2 tracking-wide">
+//                       {spec.label}
+//                     </p>
+//                     <p className="text-sm text-white leading-relaxed">
+//                       {spec.value}
+//                     </p>
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </main>
+
+//       <Footer />
+//     </div>
+//   );
+// }
