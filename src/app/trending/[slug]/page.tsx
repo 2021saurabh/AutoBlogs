@@ -251,7 +251,7 @@ export default function CarDetailPage({ params }: { params: { slug: string } }) 
               {/* Car Image */}
               <div className="relative w-full aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden mb-4">
                 <Image
-                  src={car.image}
+                  src="/images/altroz.jpeg"
                   alt={car.name}
                   fill
                   className="object-contain p-3"
