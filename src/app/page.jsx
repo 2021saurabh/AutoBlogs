@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Newsletter from "@/components/Newsletter";
+import Newsletter from "@/components/Newsletter.tsx";
 import AdBox from "@/components/AdBox";
 import LatestNews from "@/components/LatestNews";
 import Trending from "@/components/Trending";
