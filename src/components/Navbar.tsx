@@ -28,9 +28,8 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const baseLinkClass = `transition-colors uppercase tracking-wide ${
-    scrolled ? 'text-gray-900 hover:text-green-600' : 'text-gray-200 hover:text-green-400'
-  }`;
+  const baseLinkClass = `transition-colors uppercase tracking-wide ${scrolled ? 'text-gray-900 hover:text-green-600' : 'text-gray-200 hover:text-green-400'
+    }`;
   const activeClass = scrolled ? 'text-green-700' : 'text-green-400';
 
   const getLinkProps = (href: string) => {
@@ -47,9 +46,9 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-3 transition-all duration-300
         ${scrolled
-          ? 'bg-gradient-to-r from-white/20 to-gray-300/20 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
-          : 'bg-black shadow-none'
-        }`}
+            ? 'bg-gradient-to-r from-white/20 to-gray-300/20 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] backdrop-blur-md'
+            : 'bg-black shadow-none'
+          }`}
       >
         {/* Left: Logo + desktop nav */}
         <div className="flex items-center gap-4 sm:gap-10 lg:gap-16 min-w-0">
@@ -69,7 +68,7 @@ export default function Navbar() {
 
         {/* Right side: desktop & mobile controls */}
         <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1 justify-end">
-          {/* DESKTOP SEARCH (unchanged) */}
+          {/* DESKTOP SEARCH */}
           <div className="relative hidden sm:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
@@ -81,26 +80,20 @@ export default function Navbar() {
             />
           </div>
 
-          {/* MOBILE SEARCH BAR (only on mobile) */}
+          {/* MOBILE SEARCH BAR */}
           <div className="relative sm:hidden flex-1 max-w-[92vw]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
               type="text"
               placeholder="Search..."
               className={`w-full rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none border
-                ${
-                  scrolled
-                    ? 'bg-white/80 text-black placeholder-gray-500 border-gray-300 focus:border-green-500'
-                    : 'bg-gray-800/80 text-white placeholder-gray-400 border-gray-700 focus:border-green-500'
+        ${scrolled
+                  ? 'bg-white/80 text-black placeholder-gray-500 border-gray-300 focus:border-green-500'
+                  : 'bg-gray-800/80 text-white placeholder-gray-400 border-gray-700 focus:border-green-500'
                 }`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </div>
-
-          {/* Desktop profile */}
-          <div className="hidden md:flex w-10 h-10 bg-gray-700/70 rounded-full items-center justify-center">
-            <User className="w-5 h-5 text-gray-300" />
           </div>
 
           {/* Hamburger for mobile menu */}
@@ -112,6 +105,7 @@ export default function Navbar() {
             <Menu className="w-5 h-5 text-white" />
           </button>
         </div>
+
       </nav>
 
       {/* MOBILE DRAWER + OVERLAY */}
